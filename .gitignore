@@ -29,3 +29,12 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Frontend
+/frontend/node_modules
+/frontend/package-lock.json
+
+
+# JS bundles
+/app/assets/javascripts/bundle.js 
+/app/assets/javascripts/bundle.js.map
