@@ -7,6 +7,14 @@ export const get = (route, data) => {
 export const post = (route, data, token) => {
     axios.defaults.xsrfCookieName = 'csrftoken'
     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-    return axios.post(route, data, {headers: {'X-CSRF-Token': token, 'X-Requested-With': 'XMLHttpRequest',
-}})
+    const tk = token && token.token;
+    return axios.post(route,
+         data, 
+         {
+             headers: {
+                 'X-CSRF-Token': tk,
+                  'X-Requested-With': 'XMLHttpRequest',
+                   'Content-Type': 'application/json'}
+                }
+                )
 }
