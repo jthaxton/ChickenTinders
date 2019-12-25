@@ -18,6 +18,7 @@ export class Login extends React.Component {
 
         const payload = Object.assign(this.state, {token: this.props.token})
         this.props.loginUser(payload)
+        if( this.props.user.session_token ) history.push('/')
 
     }
 
@@ -42,7 +43,8 @@ export class Login extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        token: state.auth.token.token
+        token: state.auth.token.token,
+        user: state.auth.user
     };
 }
 

@@ -1,8 +1,6 @@
 class Api::SessionsController < ApplicationController
   def create
-    render json: {} if current_user
     user = User.find_by_credentials(params[:username], params[:password])
-    debugger
     if user
       signin(user)
       render json: user
@@ -14,7 +12,7 @@ class Api::SessionsController < ApplicationController
   def destroy
     if current_user
       logout
-      render json: ['YOU ARE LOGGED OUT']
+      render json: ['YOU ARE LOGGED OUT'], status: 200
     else
       render json: ['No Current User'], status: 404
     end

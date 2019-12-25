@@ -1,4 +1,4 @@
-import {post} from '../axios_helpers';
+import {post, del} from '../axios_helpers';
 
 export const api = {
     register: (data, token) => {
@@ -6,5 +6,8 @@ export const api = {
     },
     login: (data, token) => {
         return post(`/api/sessions`, data, token)
-    }
+    },
+    logout: (data, token) => {
+        return del(`/api/sessions/${data.id}`, data, token)
+    },
 }
