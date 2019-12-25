@@ -4,23 +4,22 @@ import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import styled from 'styled-components';
 
-const styledCarousel = styled.div`
-
+const StyledCarousel = styled(Carousel)`
+  display: flex;
+  justify-content: center;
 `;
 
 const CustomCarousel = ({...props}) => {
   return (
-    <Carousel infiniteLoop={true} autoPlay={true} >
-    <div>
-        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/2lUFO5HWD7_RLDWlT5Nvuw/l.jpg" />
-    </div>
-    <div>
-        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/WlwgKsyIHjuxOzxxQEfVgw/l.jpg" />
-    </div>
-    <div>
-        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/dF5pozJHzeT9KjbNBYuVpA/l.jpg" />
-    </div>
-</Carousel>
+    <StyledCarousel infiniteLoop={true} autoPlay={true} width={"40%"} stopOnHover={true} showThumbs={false} showStatus={false} showIndicators={false}>
+      {
+        props.restaurants && props.restaurants.map((restaurant, idx) => (
+          <div key={idx}>
+            <img src={restaurant.image_url} />
+          </div>
+        ))
+      }
+</StyledCarousel>
   );
 }
 
