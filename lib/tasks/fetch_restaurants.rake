@@ -9,7 +9,7 @@ task :fetch_restaurants => [:environment] do
   DEFAULT_LOCATION = "San Francisco, CA"
   SEARCH_LIMIT = 5
 
-  API_KEY = "mIauHKzRo6KtldeZLRjIiGXZCui_M01CbratO5NZq3EbmrrHqEl2qbV7FIH-Ikh63usWGo0mSEdalNSWynPKeRTaNMgBMXxpxMlqphBKHyf3N60QRsgtxeqG8aTsXHYx"
+  API_KEY = "PUT_API_KEY_HERE"
 
   def search(term, location)
     url = "#{API_HOST}#{SEARCH_PATH}"

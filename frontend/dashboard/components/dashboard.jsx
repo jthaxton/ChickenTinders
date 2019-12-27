@@ -21,9 +21,9 @@ const Dashboard = ({...props}) => {
       Interest Created Date
     </td>
   </tr>
-  {props.pendingInterests && props.pendingInterests.map(interest => 
+  {props.pendingInterests && props.pendingInterests.map((interest, idx) => 
      (
-      <tr>
+      <tr key={idx}>
         <td>
           {interest.restaurant_name}
         </td>
