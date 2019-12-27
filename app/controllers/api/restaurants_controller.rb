@@ -1,5 +1,6 @@
 class Api::RestaurantsController < ApplicationController
   def index
-    render json: [Restaurant.all]
+    restaurants = Restaurant.all.map { |restaurant| RestaurantSerializer.new(restaurant, current_user: current_user) }
+    render json: { restaurants: restaurants }
   end
 end

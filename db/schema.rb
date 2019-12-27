@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_24_042101) do
+ActiveRecord::Schema.define(version: 2019_12_27_054054) do
+  create_table "matches", force: :cascade do |t|
+    t.integer "user_1_id", null: false
+    t.integer "user_2_id", null: false
+    t.integer "restaurant_id", null: false
+    t.integer "pending_interest_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pending_interests", force: :cascade do |t|
+    t.integer "restaurant_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.string "image_url"

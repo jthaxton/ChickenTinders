@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :pending_interests
+  has_many :restaurants, through: :pending_interests
+
   def self.find_by_credentials(username, password)
     @user = User.find_by_username(username)
     if @user && @user.is_password?(password)
@@ -6,7 +9,7 @@ class User < ApplicationRecord
     else
       nil
     end
-    end
+  end
 
   def is_password?(password)
     BCrypt::Password.new(self.encrypted_password).is_password?(password)
