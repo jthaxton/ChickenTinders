@@ -43,9 +43,8 @@ const NavBar = ({...props}) => {
   return (
     <StyledNav>    
       <StyledLink to="/" label="home">Home</StyledLink>
-      <div></div>
+      <StyledLink to="/dashboard" label="dashboard">Dashboard</StyledLink>
       <Dropdown>
-        
        <StyledList onClick={handleLogout}>
           logout
         </StyledList>

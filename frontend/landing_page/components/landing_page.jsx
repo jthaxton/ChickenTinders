@@ -3,7 +3,8 @@ import CustomCarousel from '../../home_page/components/custom_carousel';
 import NavBar from '../../home_page/components/nav_bar';
 import { bindActionCreators } from 'redux';
 import  {connect}  from 'react-redux';
-import { refreshRestaurants } from '../actions/actions'
+import { refreshRestaurants, createPendingInterest, deletePendingInterest } from '../actions/actions'
+
 
 
 const LandingPage = ({...props}) => {
@@ -17,11 +18,8 @@ const LandingPage = ({...props}) => {
     })
     return (
         <>
-            <NavBar />
-            <CustomCarousel restaurants={props.restaurants} infiniteLoop={true}></CustomCarousel>
+            <CustomCarousel token={props.token} deletePendingInterest={props.deletePendingInterest} createPendingInterest={props.createPendingInterest} restaurants={props.restaurants} infiniteLoop={true}></CustomCarousel>
         </>
-        
-
     )
 }
 
@@ -35,7 +33,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return (
         bindActionCreators({
-            refreshRestaurants
+            refreshRestaurants,
+            createPendingInterest,
+            deletePendingInterest,
         }, dispatch)
     );
 }
