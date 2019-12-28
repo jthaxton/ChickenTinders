@@ -2,11 +2,11 @@ class Api::PendingInterestsController < ApplicationController
   def create
     PendingInterest.create!(user_id: current_user.id,
                             restaurant_id: params[:id])
-    restaurants = Restaurant.all.map { |restaurant|
+    restaurants = Restaurant.all.map do |restaurant|
       RestaurantSerializer.new(
         restaurant, current_user: current_user
       )
-    }
+    end
     restaurant = Restaurant.find(params[:id])
     if restaurant.pending_interests.count.even?
       MatchUsersJob.new.perform(restaurant)
@@ -18,11 +18,11 @@ class Api::PendingInterestsController < ApplicationController
   def destroy
     interest = pending_interests.detect { |i| i.restaurant_id.to_s == params[:id] }
     PendingInterest.destroy(interest&.id)
-    restaurants = Restaurant.all.map { |restaurant|
+    restaurants = Restaurant.all.map do |restaurant|
       RestaurantSerializer.new(
         restaurant, current_user: current_user
       )
-    }
+    end
     render json: { restaurants: restaurants }
   end
 

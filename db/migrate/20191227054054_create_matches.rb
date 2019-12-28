@@ -10,4 +10,3 @@ class CreateMatches < ActiveRecord::Migration[5.2]
     add_column :pending_interests, :match_id, :integer
   end
 end
-3
