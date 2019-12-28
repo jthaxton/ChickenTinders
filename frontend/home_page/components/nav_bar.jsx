@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link, BrowserRouter, Switch, Route } from 'react-router-dom';
 import theme from '../../theme.js'
 import Dropdown from './dropdown';
+import Profile from '../../profile/components/profile';
 import { logoutUser }  from '../../auth/actions/auth_actions';
 import{ connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -46,8 +47,11 @@ const NavBar = ({...props}) => {
       <StyledLink to="/dashboard" label="dashboard">Dashboard</StyledLink>
       <Dropdown>
        <StyledList onClick={handleLogout}>
-          logout
+          Logout
         </StyledList>
+        <StyledLink to="/profile" label="profile">
+          Profile
+        </StyledLink>
       </Dropdown>
     </StyledNav>
   );
