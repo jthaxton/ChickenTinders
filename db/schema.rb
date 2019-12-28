@@ -12,10 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_12_27_054054) do
   create_table "matches", force: :cascade do |t|
-    t.integer "user_1_id", null: false
-    t.integer "user_2_id", null: false
     t.integer "restaurant_id", null: false
-    t.integer "pending_interest_id", null: false
+    t.integer "pending_interest_id_1", null: false
+    t.integer "pending_interest_id_2", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -25,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_12_27_054054) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "match_id"
   end
 
   create_table "restaurants", force: :cascade do |t|

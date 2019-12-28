@@ -20,15 +20,21 @@ const Dashboard = ({...props}) => {
     <td>
       Interest Created Date
     </td>
+    <td>
+      Match
+    </td>
   </tr>
-  {props.pendingInterests && props.pendingInterests.map(interest => 
+  {props.pendingInterests && props.pendingInterests.map((interest, idx) => 
      (
-      <tr>
+      <tr key={idx}>
         <td>
           {interest.restaurant_name}
         </td>
         <td>
           {interest.created_at}
+        </td>
+        <td>
+          {interest.match_name}
         </td>
       </tr>
     )
