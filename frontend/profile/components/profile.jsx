@@ -1,15 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import  {connect}  from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Preferences from './preferences';
+import Security from './security';
+import styled from 'styled-components';
+
+const StyledSideBar = styled.div`
+  background: blue;
+  background-color: transparent;
+  opacity: 0.1;
+`;
+
+const StyeledProfileGrid = styled.div`
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 100% 40%;
+`;
+
 
 const Profile = ({...props}) => {
-  const handleChange = (e) => {
-    console.log('ok')
-  }
+  const [visible, setVisible] = useState(0)
 
+  const components = ["Preferences", "Security"];
+  const handleRender = (idx) => {
+    setVisible(idx);
+  }
   return (
-    <input onBlur={(e) => handleChange(e)}>
-    </input>
+    <StyeledProfileGrid>
+      <StyledSideBar>
+        {components.map((component, idx) => (
+          <div key={idx} onClick={() => handleRender(idx)}>{component}</div>
+        ))}
+      </StyledSideBar>
+      <div>
+        {visible === 0 && (
+          <Preferences />
+        )}
+        {visible === 1 && (
+          <Security/>
+        )}
+        </div>
+    </StyeledProfileGrid>
+    
   )
 }
 
