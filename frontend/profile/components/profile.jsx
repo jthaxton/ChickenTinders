@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import  {connect}  from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Preferences from './preferences';
 import Security from './security';
 import styled from 'styled-components';
+import {updateUser, updateUserPreferences, fetchUserPreferences, createUserPreference} from '../actions/actions';
+import { dashboard } from '../../dashboard/sagas/saga';
 
 const StyledSideBar = styled.div`
   background: blue;
@@ -20,40 +22,79 @@ const StyeledProfileGrid = styled.div`
 
 const Profile = ({...props}) => {
   const [visible, setVisible] = useState(0)
+  const [fetched, setFetched] = useState(false);
 
-  const components = ["Preferences", "Security"];
+  // const components = ["Preferences", "Security"];
+  // const propsHash = {
+  //   1: {
+  //     updateUser: updateUser,
+  //     updateUserPreferences: updateUserPreferences,
+  //     token: token,
+  //   }
+  // }
+  useEffect(()=>{
+    if(!fetched) {
+      props.fetchUserPreferences({id: props.userId});
+      setFetched(true);
+    }
+  })
+
   const handleRender = (idx) => {
     setVisible(idx);
   }
   return (
+    // <StyeledProfileGrid>
+    //   <StyledSideBar>
+    //     {components.map((component, idx) => (
+    //       <div key={idx} onClick={() => handleRender(idx)}>{component}</div>
+    //     ))}
+    //   </StyledSideBar>
+    //   <div>
+    //     {visible === 0 && (
+    //       <Preferences />
+    //     )}
+    //     {visible === 1 && (
+    //       <Security/>
+    //     )}
+    //     </div>
+    // </StyeledProfileGrid>
     <StyeledProfileGrid>
       <StyledSideBar>
-        {components.map((component, idx) => (
-          <div key={idx} onClick={() => handleRender(idx)}>{component}</div>
-        ))}
+        <div onClick={() => handleRender(0)}>
+          Preferences
+        </div>
+        <div onClick={() => handleRender(1)}>
+          Security
+        </div>
       </StyledSideBar>
-      <div>
-        {visible === 0 && (
-          <Preferences />
-        )}
-        {visible === 1 && (
-          <Security/>
-        )}
+        <div>
+          {visible === 0 && (
+            <Preferences preferences={props.preferences} createUserPreference={props.createUserPreference} userPreferences={props.preferences} updateUserPreferences={props.updateUserPreferences} userId={props.userId} token={props.token} />
+          )}
+          {visible === 1 && (
+            <Security/>
+          )}
         </div>
     </StyeledProfileGrid>
-    
   )
 }
 
 const mapStateToProps = state => {
   return {
-      token: state.auth.token.token,
+    token: state.auth.token.token,
+    userId: state.auth.user.id,
+    preferences: state.profile.userPreferences,
+
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return (
       bindActionCreators({
+        updateUser,
+        updateUserPreferences,
+        fetchUserPreferences,
+        createUserPreference,
       }, dispatch)
   );
 }

@@ -18,7 +18,7 @@ export class Login extends React.Component {
 
         const payload = Object.assign(this.state, {token: this.props.token})
         this.props.loginUser(payload)
-        if( this.props.user.session_token ) history.push('/')
+        if(this.props.user.session_token) history.push('/')
 
     }
 

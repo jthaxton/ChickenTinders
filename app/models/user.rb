@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :pending_interests
   has_many :restaurants, through: :pending_interests
+  belongs_to :user_preference
 
   def self.find_by_credentials(username, password)
     @user = User.find_by_username(username)
