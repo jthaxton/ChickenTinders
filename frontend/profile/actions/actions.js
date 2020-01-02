@@ -20,4 +20,4 @@ export const CREATE_USER_PREFERENCE = "PROFILE::CREATE_USER_PREFERENCE";
 export const createUserPreference = data => ({type: CREATE_USER_PREFERENCE, data});
 
 export const CREATE_USER_PREFERENCE_SUCCESS = "PROFILE::CREATE_USER_PREFERENCE_SUCCESS";
-export const createPUserPreferenceSuccess = data => ({type: CREATE_USER_PREFERENCE_SUCCESS, data});
+export const createUserPreferenceSuccess = data => ({type: CREATE_USER_PREFERENCE_SUCCESS, data});

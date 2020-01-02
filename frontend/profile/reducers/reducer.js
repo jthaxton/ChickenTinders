@@ -5,7 +5,7 @@ export const profile = function(prevState = {},  action) {
     switch (action.type) {
     case UPDATE_USER_SUCCESS:
         return {
-            ...prevState
+            ...prevState, user: action.data.data.user
         }
     case UPDATE_USER_PREFERENCES_SUCCESS:
         return {
@@ -13,7 +13,7 @@ export const profile = function(prevState = {},  action) {
         }
     case FETCH_USER_PREFERENCES_SUCCESS:
       return {
-        ...prevState, userPreferences: action.data.preferences
+        ...prevState, userPreferences: action.data.preferences, user: action.data.user
       }
       case CREATE_USER_PREFERENCE_SUCCESS:
         return {

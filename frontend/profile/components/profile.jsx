@@ -24,14 +24,6 @@ const Profile = ({...props}) => {
   const [visible, setVisible] = useState(0)
   const [fetched, setFetched] = useState(false);
 
-  // const components = ["Preferences", "Security"];
-  // const propsHash = {
-  //   1: {
-  //     updateUser: updateUser,
-  //     updateUserPreferences: updateUserPreferences,
-  //     token: token,
-  //   }
-  // }
   useEffect(()=>{
     if(!fetched) {
       props.fetchUserPreferences({id: props.userId});
@@ -43,21 +35,6 @@ const Profile = ({...props}) => {
     setVisible(idx);
   }
   return (
-    // <StyeledProfileGrid>
-    //   <StyledSideBar>
-    //     {components.map((component, idx) => (
-    //       <div key={idx} onClick={() => handleRender(idx)}>{component}</div>
-    //     ))}
-    //   </StyledSideBar>
-    //   <div>
-    //     {visible === 0 && (
-    //       <Preferences />
-    //     )}
-    //     {visible === 1 && (
-    //       <Security/>
-    //     )}
-    //     </div>
-    // </StyeledProfileGrid>
     <StyeledProfileGrid>
       <StyledSideBar>
         <div onClick={() => handleRender(0)}>
@@ -72,7 +49,7 @@ const Profile = ({...props}) => {
             <Preferences preferences={props.preferences} createUserPreference={props.createUserPreference} userPreferences={props.preferences} updateUserPreferences={props.updateUserPreferences} userId={props.userId} token={props.token} />
           )}
           {visible === 1 && (
-            <Security/>
+            <Security updateUser={props.updateUser} userId={props.userId} user={props.user} token={props.token}/>
           )}
         </div>
     </StyeledProfileGrid>
@@ -84,6 +61,7 @@ const mapStateToProps = state => {
     token: state.auth.token.token,
     userId: state.auth.user.id,
     preferences: state.profile.userPreferences,
+    user: state.profile.user,
 
   };
 }

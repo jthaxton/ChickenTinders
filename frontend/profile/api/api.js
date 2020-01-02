@@ -5,7 +5,7 @@ export const api = {
     return patch(`/api/preferences/${data.preferenceId}`, data, token)
     },
   updateUser: (data, token) => {
-    return post(`/api/users/${data.id}`, data, token)
+    return patch(`/api/users/${data.id}`, data, token)
   },
   fetchPreferences: (data) => {
     return get(`/api/preferences`, {})

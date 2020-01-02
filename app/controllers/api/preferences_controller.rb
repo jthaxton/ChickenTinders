@@ -18,7 +18,7 @@ class Api::PreferencesController < ApplicationController
   end
 
   def index
-    render json: {preferences: current_user.user_preference}
+    render json: {preferences: current_user.user_preference, user: UserSerializer.new(current_user)}
   end
 
   private
