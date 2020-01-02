@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import {loginUser} from '../actions/auth_actions';
 import { bindActionCreators } from 'redux';
 import  {connect}  from 'react-redux'; 
+import {Link} from 'react-router-dom';
 
 export class Login extends React.Component {
     constructor(props) {
@@ -35,6 +36,7 @@ export class Login extends React.Component {
                         <label htmlFor="password">Password</label><input type="password" value={password} onChange={e => this.setState({password: e.currentTarget.value})}/>
                     </div>
                     <button>Submit</button>
+                    <Link to="/register">Register</Link>
                 </form>
             </Fragment>
         )
