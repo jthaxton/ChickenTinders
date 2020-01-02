@@ -18,7 +18,8 @@ export class Register extends React.Component {
     handleSubmit() {
         const {registerUser, token} = this.props;
         const payload = Object.assign(this.state, {token: token})
-        return registerUser(payload);
+        registerUser(payload);
+        history.push('/')
     }
 
     render() {
@@ -29,7 +30,7 @@ export class Register extends React.Component {
             <label htmlFor="first_name">First</label><input type="text" value={first_name} onChange={e => this.setState({first_name: e.target.value})}/>
             <label htmlFor="last_name">Last</label><input type="text" value={last_name} onChange={e => this.setState({last_name: e.target.value})}/>
             <label htmlFor="password">Password</label><input type="password" value={password} onChange={e => this.setState({password: e.target.value})}/>
-            <button type="submit" onClick={this.handleSubmit}>Submit</button>
+            <button type="submit" onClick={() => this.handleSubmit()}>Submit</button>
         </div>
         );
     }
