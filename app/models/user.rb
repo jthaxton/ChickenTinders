@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :pending_interests
   has_many :restaurants, through: :pending_interests
+  belongs_to :user_preference, optional: true
 
   def self.find_by_credentials(username, password)
     @user = User.find_by_username(username)
@@ -34,5 +35,9 @@ class User < ApplicationRecord
 
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64
+  end
+
+  def local_restaurants
+    restaurants.where(zip: zip)
   end
 end

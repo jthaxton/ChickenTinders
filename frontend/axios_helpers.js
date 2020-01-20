@@ -21,6 +21,22 @@ export const post = (route, data, token) => {
             )
 }
 
+export const patch = (route, data, token) => {
+    axios.defaults.xsrfCookieName = 'csrftoken'
+    axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+    const tk = token && token.token;
+    return axios.patch(route,
+         data, 
+            {
+             headers: {
+                'X-CSRF-Token': tk,
+                 'X-Requested-With': 'XMLHttpRequest',
+                  'Content-Type': 'application/json'
+                }
+            }
+            )
+}
+
 export const del = (route, data, token) => {
     axios.defaults.xsrfCookieName = 'csrftoken'
     axios.defaults.xsrfHeaderName = 'X-CSRFToken'

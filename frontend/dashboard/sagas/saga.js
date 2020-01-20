@@ -4,9 +4,9 @@ import { api } from '../api/api';
 
 export function* _refreshPendingInterests(action) {
   const reply = yield call(api.refreshPendingInterests, {});
-  yield put(refreshPendingInterestsSuccess(reply.data.pending_interests))
+  yield put(refreshPendingInterestsSuccess(reply.data.pending_interests));
 }
 
 export function* dashboard() {
-  yield takeEvery(REFRESH_PENDING_INTERESTS, _refreshPendingInterests)
+  yield takeEvery(REFRESH_PENDING_INTERESTS, _refreshPendingInterests);
 }
